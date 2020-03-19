@@ -12,6 +12,22 @@ class Award
         enforce_quality_bounds
     end
 
+    def enforce_quality_bounds
+        if self.quality > 50
+            self.quality = 50
+        elsif self.quality < 0
+            self.quality = 0
+        end
+    end
+
+    def expired? 
+        self.expires_in < 0
+    end
+
+    def quality
+        self.name == "Blue Distinction Plus" ? 80 : @quality
+    end
+
     def update
         update_expiration
         update_quality
@@ -45,22 +61,6 @@ class Award
         end
 
         enforce_quality_bounds
-    end
-
-    def quality
-        self.name == "Blue Distinction Plus" ? 80 : @quality
-    end
-
-    def enforce_quality_bounds
-        if self.quality > 50
-            self.quality = 50
-        elsif self.quality < 0
-            self.quality = 0
-        end
-    end
-
-    def expired? 
-        self.expires_in < 0
     end
 end
 
