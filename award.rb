@@ -38,9 +38,9 @@ class Award
     end
 
     def update_quality
-        return if self.name == "Blue Distinction Plus"
-
         case self.name
+        when 'Blue Distinction Plus'
+            return
         when 'Blue Star'
             self.quality -= 2
             self.quality -= 2 if expired?
